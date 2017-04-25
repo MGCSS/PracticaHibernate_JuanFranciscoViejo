@@ -71,11 +71,11 @@ public class ManejaExperto {
         try
         {
             inicioOperacion();
-            Query query=sesion.createQuery("SELECT e.nombre, e.especialidad form experto as e");
+            Query query=sesion.createSQLQuery("SELECT e.nombre, e.especialidad from experto as e");
             List<Object[]> listaResultados = query.list();
             for (int i = 0; i < listaResultados.size(); i++) {
                     
-                  System.out.println("Nombre "+i+": "+listaResultados.get(i)+" especialidad "+ listaResultados.get(i));
+                  System.out.println("Nombre "+i+": "+listaResultados.get(i)[0]+" especialidad "+ listaResultados.get(i)[1]);
             }
         } catch (HibernateException he){
             throw he;

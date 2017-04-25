@@ -3,6 +3,7 @@ package practica2;
 import modelo.*;
 import org.hibernate.*;
 import Practica2.*;
+import java.util.List;
 /**
  *
  * @author usuario
@@ -63,6 +64,52 @@ public class ManejaExperto {
             finalizaOperacion();
         }
     }
+    
+    
+    
+    public void obtenNombresyEspecialidad(){
+        try
+        {
+            inicioOperacion();
+            Query query=sesion.createQuery("SELECT e.nombre, e.especialidad form experto as e");
+            List<Object[]> listaResultados = query.list();
+            for (int i = 0; i < listaResultados.size(); i++) {
+                    
+                  System.out.println("Nombre "+i+": "+listaResultados.get(i)+" especialidad "+ listaResultados.get(i));
+            }
+        } catch (HibernateException he){
+            throw he;
+        }finally{
+            finalizaOperacion();
+        }
+        
+         
+    }
+    
+    public void listaConParametro(String keyword){
+        try
+        {
+            inicioOperacion();
+            //Query query;
+        } catch (HibernateException he){
+            throw he;
+        }finally{
+            finalizaOperacion();
+        }
+    }
+   
+    public void obtenCasos(){
+        try
+        {
+            inicioOperacion();
+            //Query query;
+        } catch (HibernateException he){
+            throw he;
+        }finally{
+            finalizaOperacion();
+        }
+    }
+    
     public void finalizaOperacion(){
         tran.commit();
         sesion.close();

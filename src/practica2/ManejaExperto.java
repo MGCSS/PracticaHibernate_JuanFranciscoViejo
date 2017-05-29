@@ -4,6 +4,7 @@ import modelo.*;
 import org.hibernate.*;
 import Practica2.*;
 import java.util.List;
+import org.hibernate.criterion.Restrictions;
 /**
  *
  * @author usuario
@@ -87,25 +88,35 @@ public class ManejaExperto {
     }
     
     public void listaConParametro(String keyword){
-        try
-        {
+      
+        try {
             inicioOperacion();
-            //Query query;
-        } catch (HibernateException he){
+            List expertos = sesion.createCriteria(Experto.class).add(Restrictions.like("especialidad",keyword)).list();
+            for (int i = 0; i < expertos.size(); i++) {
+                System.out.println("Nombre: " + ((Experto) expertos.get(i)).getNombre()
+                        + ", Especialidad: " + ((Experto) expertos.get(i)).getEspecialidad());
+            }
+        } catch (HibernateException he) {
             throw he;
-        }finally{
+        } finally {
             finalizaOperacion();
         }
     }
    
     public void obtenCasos(){
-        try
-        {
+        try {
             inicioOperacion();
-            //Query query;
-        } catch (HibernateException he){
+                String queryString = "SELECT DISTINCT e.nombre, cp.nombre from caso_policial cp"
+                        +" INNER JOIN colabora c INNER JOIN experto e";
+                Query query = sesion.createSQLQuery(queryString);
+                List<Object[]> casos = query.list();
+                for(int i=0;i<casos.size();i++){
+            System.out.println("Nombre: "+casos.get(i)[0] + ", Caso: " + casos.get(i)[1]);
+                }
+            
+        } catch (HibernateException he) {
             throw he;
-        }finally{
+        } finally {
             finalizaOperacion();
         }
     }

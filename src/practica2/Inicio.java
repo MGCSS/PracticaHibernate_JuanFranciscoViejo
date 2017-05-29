@@ -27,16 +27,19 @@ public class Inicio {
         Time tfinal=new Time(System.currentTimeMillis());
         long mfinal=tfinal.getTime();
         System.out.println(mfinal-inicio);*/
+         
         ManejaExperto me=new ManejaExperto();
-        //Experto experto=new Experto("C558", "Juan Francisco Viejo", "España", "Informatica");
+        me.inicioOperacion();
+        //Experto experto=new Experto("C704", "Juan Francisco Viejo", "España", "Informatica");
         //me.guardaExperto(experto);
-        //Experto e=me.obtenExperto("C558");
+        //Experto e=me.obtenExperto("C704");
         //e.setSexo('M');
         //me.actualizaExperto(e);
         //me.eliminaExperto(e);
-        me.inicioOperacion();
-        //me.obtenNombresyEspecialidad();
-        me.listaConParametro(Armas);
+        me.obtenNombresyEspecialidad();
+        me.listaConParametro("Armas");
+        me.obtenCasos();
+        me.obtenCasos();
         me.finalizaOperacion();
     }
     
